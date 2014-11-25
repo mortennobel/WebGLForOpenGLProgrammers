@@ -1,0 +1,130 @@
+/* Current color theme is http://colorschemedesigner.com/#1i11UfvpEw0w0 */
+
+#doc {
+    margin:auto; /* center in viewport */
+    width: 960px; /* fix page width */
+}
+
+#wrapper{
+    font-family: 'Verdana', serif;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.content h1 {
+    font-family: 'Coustard', serif;
+    font-size: 40px;
+    font-weight: 400;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+.content h2 {
+    font-family: 'Coustard', serif;
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+
+.example-snippet {
+    margin-bottom: 25px;
+}
+
+.editor-title {
+    margin-top: 10px;
+    font-family: 'Coustard', serif;
+    font-size: 16px;
+}
+
+body{
+    background-color: #E6D9A9;
+}
+
+.content a:link {color:#998D62;}      /* unvisited link */
+.content a:visited {color:#857022;}  /* visited link */
+.content a:hover {color:#CCB769;}  /* mouse over link */
+.content a:active {color:#CCB769;}  /* selected link */
+
+h1#BigFont {
+    font-size: 100px;
+    margin-bottom: 0;
+    margin-top: 20px;
+    text-align: center;
+}
+
+#BigUpper {
+    margin-bottom: 0;
+    margin-top: 0;
+    font-size: 40px;
+    font-weight: 900;
+    position: relative;
+    top: -55px;
+}
+
+#page {
+    width: 900px;
+    text-align: left;
+    margin: 0 auto;
+    background-color: white;
+}
+
+#twocols {
+
+}
+
+.warning {
+    color:#FF0000;
+    font-weight: bold;
+}
+
+#singlecol {
+    float: left;
+    position: relative;
+    width: 860px;
+    padding: 20px 20px 20px 20px;
+}
+
+#maincol {
+    float: left;
+    position: relative;
+    width: 560px;
+    padding: 20px 20px 20px 20px;
+}
+
+#rightcol {
+    float: right;
+    position: relative;
+    width: 260px;
+    padding: 20px 20px 20px 20px;
+}
+
+.example_panel{
+    width: 180px;
+    float: left;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.example_panel img{
+    width: 160px;
+    height: 80px;
+}
+
+/* ******************************************************************** */
+/* Clearfix: http://csscreator.com/attributes/containedfloat.php        */
+/* ******************************************************************** */
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.clearfix{display: inline-block;}
+
+/* Hides from IE-mac \*/
+* html .clearfix{height: 1%;}
+.clearfix{display: block;}
+/* End hide from IE-mac */

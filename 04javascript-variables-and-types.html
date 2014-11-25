@@ -1,0 +1,136 @@
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-26354413-1']);
+        _gaq.push(['_setDomainName', 'kickjs.org']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/combo?3.16.0/cssnormalize/cssnormalize-min.css&3.16.0/cssfonts/cssfonts-min.css&3.16.0/cssgrids/cssgrids-min.css&3.16.0/cssbase/cssbase-min.css&3.16.0/cssbutton/cssbutton-min.css">
+    <script src="http://yui.yahooapis.com/3.16.0/build/yui/yui-min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Coustard:400,900' rel='stylesheet' type='text/css'>
+    <link href='style.css' rel='stylesheet' type='text/css'>
+    <title>WebGL for OpenGL Programmers</title>
+</head>
+<body class="yui3-skin-sam">
+<script src="//cdn.jsdelivr.net/ace/1.1.3/min/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="live_editor.js" type="text/javascript" charset="utf-8"></script>
+<script src="navigator.js" type="text/javascript" charset="utf-8"></script>
+<div id="page">
+    <header>
+    </header>
+    <article class="content">
+        <div id="wrapper" class="clearfix">
+            <div id="singlecol">
+
+                <script>
+                    insertPageTitle();
+                </script>
+                <p>
+                    In JavaScript types are associated with the values and not the variable. This means that a single
+                    variable can contains values of different types in different places in the program. In the example
+                    below the variable <code>i</code> first refers to the string <code>"Hello world "</code> and later
+                    refers to the value <code>0</code>.
+                </p>
+<script type="html-source/xxx" id="dynamic-typing-example">
+var i = "Hello world "; 
+document.write(i); 
+i = 0;
+ document.write(i);
+</script>
+                <script>
+                    var editor = new LiveEditor();
+                    editor.data = '<scrip'+'t>'+document.getElementById('dynamic-typing-example').textContent+'</scrip'+'t>';
+                    editor.mode = "ace/mode/html";
+                    editor.height = "100px";
+                    editor.title = "Dynamic typing example";
+                    editor.build();
+                </script>
+                <p>
+                    The following lists the different types of variables in JavaScript.
+                </p>
+                <table>
+                    <tr>
+                        <th>Type</th>
+                        <th>Examples</th>
+                        <th>Copy semantic</th>
+                        <th>Comment</th>
+                    </tr>
+                    <tr>
+                        <td>Boolean</td>
+                        <td>true<br>
+                            false</td>
+                        <td>Copy by value</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>Number</td>
+                        <td>3.14</td>
+                        <td>Copy by value</td>
+                        <td>64-bit precision</td>
+                    </tr>
+                    <tr>
+                        <td>String</td>
+                        <td>"xyz"</td>
+                        <td>Copy by reference immutable</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>Function</td>
+                        <td>function foo(){<br>
+                            &nbsp;&nbsp;return 0; <br>}</td>
+                        <td>Copy by reference immutable</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>Object</td>
+                        <td>{pi: 3.14}<br>
+                            new Object()
+                        </td>
+                        <td>Copy by reference mutable</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td>Arrays</td>
+                        <td>[1,2,3] <br>
+                            new Array(2)
+                        </td>
+                        <td>Copy by reference mutable</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+                <p>
+                    A variable that has not been assigned a value has the value <code>undefined</code>, which is
+                    different from the value <code>null</code>. The <code>null</code> value is also different from the
+                    numeric value <code>0</code>. To read the type of a variable you can use the <code>typeof</code>
+                    function which returns a string.
+                </p>
+                <script type="html-source/xxx" id="type-of-example">
+ document.write(typeof({}));
+</script>
+                <script>
+                    var editor = new LiveEditor();
+                    editor.data = '<scrip'+'t>'+document.getElementById('type-of-example').textContent+'</scrip'+'t>';
+                    editor.mode = "ace/mode/html";
+                    editor.height = "50px";
+                    editor.title = "typeof example";
+                    editor.build();
+                </script>
+                <script>
+                    insertNavigator();
+                </script>
+            </div>
+        </div>
+    </article>
+</div>
+</body>
+
+</html>

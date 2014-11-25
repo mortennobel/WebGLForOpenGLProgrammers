@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hello webgl</title>
+</head>
+<body>
+<canvas id="n" width="200" height="200"/>
+<script>
+ var modelData =  {
+"vertex":[0,0,0,
+        1,0,0,
+        0,1,0], 
+"color":[0,0,1,
+        0,1,0,
+        1,0,0]
+}; 
+</script>
+<script type="shader" id="vshader">
+attribute vec4 vertex;
+attribute vec4 color;
+
+varying vec4 vColor;
+
+void main(void) {
+	gl_Position = vertex;
+    vColor = color;
+}
+</script>
+<script type="shader" id="fshader">
+precision highp float;
+
+varying vec4 vColor;
+
+void main(void)
+{
+	gl_FragColor = vColor;
+}
+</script>
+<script>
+    var canvas =  document.getElementById("n");
+    var gl = canvas.getContext("experimental-webgl") || canvas.getContext("webgl");
+
+    // prepare data
+    var data = modelData.vertex.concat(modelData.color);
+    var dataFloat = new Float32Array(data);
+
+    // create and upload vertex buffer
+    var vertexBuffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, vertexBuffer);
+    gl.bufferData(gl.ARRAY_BUFFER, dataFloat,
+            gl.STATIC_DRAW);
+
+    // read shader source
+    var vshaderTag = document.getElementById('vshader');
+    var fshaderTag = document.getElementById('fshader');
+
+    // create, compile and link shader
+    var vShader = gl.createShader(gl.VERTEX_SHADER);
+    gl.shaderSource(vShader, vshaderTag.textContent);
+    gl.compileShader(vShader);
+    if (!gl.getShaderParameter(vShader, gl.COMPILE_STATUS)) {
+        alert(gl.getShaderInfoLog(vShader));
+    }
+    var fShader = gl.createShader(gl.FRAGMENT_SHADER);
+    gl.shaderSource(fShader, fshaderTag.textContent);
+    gl.compileShader(fShader);
+    if (!gl.getShaderParameter(fShader, gl.COMPILE_STATUS)) {
+        alert(gl.getShaderInfoLog(fShader));
+    }
+    shaderProgram = gl.createProgram();
+    gl.attachShader(shaderProgram, vShader);
+    gl.attachShader(shaderProgram, fShader);
+    gl.linkProgram(shaderProgram);
+    if (!gl.getProgramParameter(shaderProgram, gl.LINK_STATUS)) {
+        alert("Could not initialise shaders");
+    }
+    gl.useProgram(shaderProgram);
+
+    // setup vertex buffer object
+    var vertexPos = gl.getAttribLocation(shaderProgram, "vertex");
+    var colorPos = gl.getAttribLocation(shaderProgram, "color");
+    var sizeOfFloat = 4;
+    var itemSize = 3;
+    var colorOffset = sizeOfFloat * modelData.vertex.length;
+    gl.enableVertexAttribArray(vertexPos);
+    gl.vertexAttribPointer(vertexPos, itemSize, gl.FLOAT, false, 0, 0);
+    gl.enableVertexAttribArray(colorPos);
+    gl.vertexAttribPointer(colorPos, itemSize, gl.FLOAT, false, 0, colorOffset);
+
+    // draw
+    gl.clear(gl.COLOR_BUFFER_BIT);
+    gl.drawArrays(gl.TRIANGLES, 0, 3);
+</script>
+</body>
+</html>

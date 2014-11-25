@@ -1,0 +1,111 @@
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-26354413-1']);
+        _gaq.push(['_setDomainName', 'kickjs.org']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/combo?3.16.0/cssnormalize/cssnormalize-min.css&3.16.0/cssfonts/cssfonts-min.css&3.16.0/cssgrids/cssgrids-min.css&3.16.0/cssbase/cssbase-min.css&3.16.0/cssbutton/cssbutton-min.css">
+    <script src="http://yui.yahooapis.com/3.16.0/build/yui/yui-min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Coustard:400,900' rel='stylesheet' type='text/css'>
+    <link href='style.css' rel='stylesheet' type='text/css'>
+    <title>WebGL for OpenGL Programmers</title>
+</head>
+<body class="yui3-skin-sam">
+<script src="//cdn.jsdelivr.net/ace/1.1.3/min/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="live_editor.js" type="text/javascript" charset="utf-8"></script>
+<script src="navigator.js" type="text/javascript" charset="utf-8"></script>
+<div id="page">
+    <header>
+    </header>
+    <article class="content">
+        <div id="wrapper" class="clearfix">
+            <div id="singlecol">
+
+                <script>
+                    insertPageTitle();
+                </script>
+                <p>
+                    An array in JavaScript is a special type of object, which contains an indexed set of objects. The
+                    values in an array, which may be of different types, can be accessed using the <code>[]</code>-operator.
+                    An array has a <code>length</code> property, which returns the value of
+                    the largest used index plus one.
+                    Arrays in JavaScript is much more dynamic than arrays in C++ or Java; Arrays automatically grows to
+                    your needs and arrays can even be sparse (unused elements in an array will have the value
+                    <code>undefined</code>). An array also has a number of useful methods such as <code>push()</code>,
+                    <code>pop()</code> and <code>sort()</code>.
+                </p>
+<script type="html-source/xxx" id="arrays-example">
+var a = new Array();
+ // var a = [];  // alternative
+a[0] = 12; 
+document.write(a[0]); 
+a[1] = 'y'; 
+document.write(a[1]); 
+document.write(a.length);
+</script>
+                <script>
+                    var editor = new LiveEditor();
+                    editor.data = '<scrip'+'t>'+document.getElementById('arrays-example').textContent+'</scrip'+'t>';
+                    editor.mode = "ace/mode/html";
+                    editor.height = "145px";
+                    editor.title = "Arrays example";
+                    editor.build();
+                </script>
+                <p>
+                    When working with data used for WebGL you need to be able to known the data type (such as 32-bit
+                    floating point number) and that the data is located continuous in memory to ensure efficiency.
+                    Neither of these two requirements is guaranteed by JavaScript arrays.
+                </p>
+                <p>
+                    When WebGL was introduced a new type of array was also introduced; Typed arrays. Typed arrays works
+                    much more like arrays in C++ or Java. The array has a given type (32 bit float or unsigned 16 bit
+                    integer) and data are located continuous in memory and has fixed length. Examples of typed arrays are
+                    <code>Float32Array</code> and <code>Uint16Array</code> and a typed array object is created using the
+                    new operator with the array length as parameter.
+                </p>
+                <script type="html-source/xxx" id="typed-array-example">
+var a = new Uint16Array(2);
+ a[0] = -1; 
+document.write(a[0]); 
+a[1] = 3.14; 
+document.write('<br>'+a[1]);
+</script>
+                <script>
+                    var editor = new LiveEditor();
+                    editor.data = '<scrip'+'t>'+document.getElementById('typed-array-example').textContent+'</scrip'+'t>';
+                    editor.mode = "ace/mode/html";
+                    editor.height = "120px";
+                    editor.title = "Typed array example";
+                    editor.build();
+                </script>
+                <p>
+                    The array types like <code>Float32Array</code> and <code>Uint16Array</code> actually works as view
+                    on a <code>ArrayBuffer</code> (which is essentially is a block of memory). You can have different views on the
+                    same <code>ArrayBuffer</code>, which can be useful when working with raw data.
+                </p>
+                <ul>
+
+                    <li><code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">MDN: Array (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)</a></code></li>
+                    <li><code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays">MDN: Typed Array (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Typed_arrays)</a></code></li>
+                </ul>
+                <script>
+                    insertNavigator();
+                </script>
+            </div>
+        </div>
+    </article>
+</div>
+</body>
+
+</html>

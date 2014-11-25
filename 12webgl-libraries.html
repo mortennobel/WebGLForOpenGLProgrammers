@@ -1,0 +1,99 @@
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-26354413-1']);
+        _gaq.push(['_setDomainName', 'kickjs.org']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/combo?3.16.0/cssnormalize/cssnormalize-min.css&3.16.0/cssfonts/cssfonts-min.css&3.16.0/cssgrids/cssgrids-min.css&3.16.0/cssbase/cssbase-min.css&3.16.0/cssbutton/cssbutton-min.css">
+    <script src="http://yui.yahooapis.com/3.16.0/build/yui/yui-min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Coustard:400,900' rel='stylesheet' type='text/css'>
+    <link href='style.css' rel='stylesheet' type='text/css'>
+    <title>WebGL for OpenGL Programmers</title>
+</head>
+<body class="yui3-skin-sam">
+<script src="//cdn.jsdelivr.net/ace/1.1.3/min/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="live_editor.js" type="text/javascript" charset="utf-8"></script>
+<script src="navigator.js" type="text/javascript" charset="utf-8"></script>
+<div id="page">
+    <header>
+    </header>
+    <article class="content">
+        <div id="wrapper" class="clearfix">
+            <div id="singlecol">
+
+                <script>
+                    insertPageTitle();
+                </script>
+                <p>
+                    You should now have a basic understanding of the basics of WebGL. But to do anything useful besides
+                    these limited examples you will need a few libraries.
+                </p>
+                <h2>glMatrix</h2>
+                <p>
+                    First of all you will need a linear algebra library with vectors and matrices with dimensions up to
+                    4. If you are a C++ programmer you will probably be a little disappointed finding out that JavaScript
+                    does not have operator overload, which makes the code rather ugly.
+                </p>
+                <p>
+                    One of the most commonly used linear algebra libraries for JavaScript is called glMatrix
+                    (<a href="http://glmatrix.net/">http://glmatrix.net/</a>). The current version of glMatrix is 2.x.
+                    As many other JavaScript libraries it exist in two different versions, a normal version with human
+                    readable code and in a minified version, where the source code has been shortened to decrease the
+                    file-size and increase the download speed. An example of using the library can be seen below.
+                </p>
+
+                <p>
+                    The API usually has the output variable as the first parameter. This may seem very odd at first but
+                    this allows programmers to use pre-allocated matrices, which avoids temporary matrix objects that
+                    eventually has to be cleaned up by the garbage collector.
+                </p>
+                <script type="html-source/xxx" id="glMatrix-example">
+<scrip_t src="http://cdn.jsdelivr.net/glmatrix/2.2.0/gl-matrix.js"></scrip_t>
+<scrip_t>
+var persp = mat4.create();
+mat4.perspective(persp, 45, 4/3, 1, 100);
+document.write(mat4.str(persp));
+document.write("<br>");
+
+var mv = mat4.create();
+mat4.identity(mv);
+mat4.translate(mv, mv, [0, 0, -10]);
+mat4.rotate(mv, mv, Math.PI/2, [0, 1, 0]);
+mat4.scale(mv, mv, [2, 2, 2]);
+document.write(mat4.str(mv));
+</scrip_t>
+</script>
+                <script>
+                    var editor = new LiveEditor();
+                    editor.data = document.getElementById('glMatrix-example').textContent;
+                    editor.mode = "ace/mode/html";
+                    editor.height = "220px";
+                    editor.title = "glMatrix example";
+                    editor.build();
+                </script>
+                <p>
+                    To save network-bandwidth the code-example above downloads the library from a CDN-server (Content Delivery Network). The
+                    idea is similar to shared DLL files used in operating systems; here commonly used libraries are
+                    stored on public servers, which means that the browser only needs to download (and cache) the library
+                    once even through it might be used on multiple websites.
+                </p>
+                <script>
+                    insertNavigator();
+                </script>
+            </div>
+        </div>
+    </article>
+</div>
+</body>
+
+</html>

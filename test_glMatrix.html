@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<script src="//cdn.jsdelivr.net/glmatrix/2.2.0/gl-matrix.js"></script>
+<script>
+    var persp = mat4.create();
+    mat4.perspective(persp, 45, 4/3, 1, 100);
+    document.write(mat4.str(persp));
+
+    var modelView = mat4.create();
+    mat4.identity(modelView); // Set to identity
+    mat4.translate(modelView, modelView, [0, 0, -10]); // Translate back 10 units
+    mat4.rotate(modelView, modelView, Math.PI/2, [0, 1, 0]); // Rotate 90 degrees around the Y axis
+    mat4.scale(modelView, modelView, [2, 2, 2]); // Scale by 200%
+    document.write(mat4.str(modelView));
+</script>
+</body>
+</html>

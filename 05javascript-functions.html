@@ -1,0 +1,117 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-26354413-1']);
+        _gaq.push(['_setDomainName', 'kickjs.org']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/combo?3.16.0/cssnormalize/cssnormalize-min.css&3.16.0/cssfonts/cssfonts-min.css&3.16.0/cssgrids/cssgrids-min.css&3.16.0/cssbase/cssbase-min.css&3.16.0/cssbutton/cssbutton-min.css">
+    <script src="http://yui.yahooapis.com/3.16.0/build/yui/yui-min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Coustard:400,900' rel='stylesheet' type='text/css'>
+    <link href='style.css' rel='stylesheet' type='text/css'>
+    <title>WebGL for OpenGL Programmers</title>
+</head>
+<body class="yui3-skin-sam">
+<script src="//cdn.jsdelivr.net/ace/1.1.3/min/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="live_editor.js" type="text/javascript" charset="utf-8"></script>
+<script src="navigator.js" type="text/javascript" charset="utf-8"></script>
+<div id="page">
+    <header>
+    </header>
+    <article class="content">
+        <div id="wrapper" class="clearfix">
+            <div id="singlecol">
+
+                <script>
+                    insertPageTitle();
+                </script>
+
+                <p>
+                    JavaScript functions have a list of parameters and can optionally return a value. A function is
+                    defined using the <code>function</code> keyword. A function can be invoked using the name of the function
+                    and a comma-separated list of values as parameters wrapped in parenthesis.
+                </p>
+<script type="html-source/xxx" id="functions-example">
+function f(a,b) { 
+    return a+b; 
+}
+var res = f(1,2); 
+document.write(res)
+var txt = f('a','b');
+document.write(txt); 
+</script>
+                <script>
+                    var editor = new LiveEditor();
+                    editor.data = '<scrip'+'t>'+document.getElementById('functions-example').textContent+'</scrip'+'t>';
+                    editor.mode = "ace/mode/html";
+                    editor.height = "150px";
+                    editor.title = "Functions example";
+                    editor.build();
+                </script>
+                <p>
+                    A JavaScript function is just a JavaScript object that can be invoked using the parenthesis
+                    operator. This means that you pass around function objects as any other object. Another detail is
+                    that function declaration returns the function object, which gives an alternative way of creating
+                    functions (see function <code>g</code> in the example below).
+                </p>
+                <script type="html-source/xxx" id="functions-as-objects-example">
+function f(a,b){
+    return a+b;
+ } 
+var g = function(a,b){ 
+    return a-b; 
+}; 
+g = f; 
+document.write(g(1,2)); 
+</script>
+                <script>
+                    var editor = new LiveEditor();
+                    editor.data = '<scrip'+'t>'+document.getElementById('functions-as-objects-example').textContent+'</scrip'+'t>';
+                    editor.mode = "ace/mode/html";
+                    editor.height = "160px";
+                    editor.title = "Functions as objects example";
+                    editor.build();
+                </script>
+                <p>
+                    Functions are often used as callback handlers for instance when loading images or when using timers.
+                </p>
+                <script type="html-source/xxx" id="callback-functions-example">
+function onReady(){
+    var txtEl = document.createTextNode("ready");
+    document.body.appendChild(txtEl);
+}
+setTimeout(onReady, 500); // call onReady after 0.5s
+document.write("init ");
+</script>
+                <script>
+                    var editor = new LiveEditor();
+                    editor.data = '<scrip'+'t>'+document.getElementById('callback-functions-example').textContent+'</scrip'+'t>';
+                    editor.mode = "ace/mode/html";
+                    editor.height = "145px";
+                    editor.title = "Callback functions example";
+                    editor.build();
+                </script>
+                <p>
+                    Another detail is that functions are the only way to define scope of variables (in other words
+                    curly-brackets does not define scope). This means that from a function you can access local
+                    variables in the function and variables defined in outer functions and global variables defined
+                    outside any function.
+                </p>
+                <script>
+                    insertNavigator();
+                </script>
+            </div>
+        </div>
+    </article>
+</div>
+</body>
+
+</html>

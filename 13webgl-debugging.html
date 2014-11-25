@@ -1,0 +1,119 @@
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-26354413-1']);
+        _gaq.push(['_setDomainName', 'kickjs.org']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/combo?3.16.0/cssnormalize/cssnormalize-min.css&3.16.0/cssfonts/cssfonts-min.css&3.16.0/cssgrids/cssgrids-min.css&3.16.0/cssbase/cssbase-min.css&3.16.0/cssbutton/cssbutton-min.css">
+    <script src="http://yui.yahooapis.com/3.16.0/build/yui/yui-min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Coustard:400,900' rel='stylesheet' type='text/css'>
+    <link href='style.css' rel='stylesheet' type='text/css'>
+    <title>WebGL for OpenGL Programmers</title>
+</head>
+<body class="yui3-skin-sam">
+<script src="//cdn.jsdelivr.net/ace/1.1.3/min/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="live_editor.js" type="text/javascript" charset="utf-8"></script>
+<script src="navigator.js" type="text/javascript" charset="utf-8"></script>
+<div id="page">
+    <header>
+    </header>
+    <article class="content">
+        <div id="wrapper" class="clearfix">
+            <div id="singlecol">
+                <script>
+                    insertPageTitle();
+                </script>
+                <p>
+                    Debugging JavaScript in modern web browsers is very easy, since all browsers include a build-in
+                    debugger that can be started at any point in time. From the debugger you can inspect variables,
+                    modify variables and even run on-the-fly snippets of JavaScript code.
+                    Modern web browsers even include advanced profilers, which makes it easy to pinpoint slow code and
+                    resource leaks.
+                </p>
+                <p>
+                    In contrast to normal JavaScript, WebGL can be fairly tricky to debug. The main reason is that WebGL
+                    is based on the C-API from OpenGL ES 2.0. This means that WebGL resources are accessed using
+                    resource handles (instead of JavaScript objects) which prevents the debugger to easily see the value
+                    of a variable. Another challenge is that WebGL state errors need to be tested using the
+                    <code>gl.getError</code> (in contrast to exceptions used in everywhere else in JavaScript). In WebGL
+                    both the type and the value of function parameters can be wrong.
+                </p>
+                <p>
+                    One very useful tool for testing WebGL state errors is WebGL-Debug - a small script library
+                    developed by Khronos. The library replaces the actual WebGL context with a proxy object, which will
+                    then test for errors after each function call. The following gives a short example of how a WebGL
+                    state error is detected and printed to the browsers JavaScript console.
+                </p>
+                <script type="html-source/xxx" id="webgl-debug-example">
+<canvas id="n" width="50" height="50"></canvas>
+<scrip_t src="webgl-debug.js"></scrip_t>
+ <scrip_t>
+var canvas = document.getElementById("n");
+var gl = canvas.getContext("experimental-webgl") || canvas.getContext("webgl");
+gl = WebGLDebugUtils.makeDebugContext(gl);
+function updateClearColor(){
+    gl.clearColor(Math.random(),
+        Math.random(), Math.random(), 1);
+
+    // error should be COLOR_BUFFER_BIT
+    gl.clear(gl.COLOR_CLEAR_VALUE);
+}
+setInterval(updateClearColor, 16);
+</scrip_t>
+See error in the browers JavaScript console.
+</script>
+                <script>
+
+                    var contentElement = document.getElementById('webgl-debug-example');
+                    var editor = new LiveEditor();
+                    editor.data = contentElement.textContent;
+                    editor.mode = "ace/mode/html";
+                    editor.height = "240px";
+                    editor.resultTitle = "Result (check browser console for errors)";
+                    // cheating to use absolute url to webGlDebug
+                    var webglDebugURL = location.href.substring(0,location.href.lastIndexOf('/')+1);
+                    var oldWrapper = editor.wrapperFunction;
+                    editor.wrapperFunction = function(data, updateContent){
+                        var res = oldWrapper(data);
+                        if (!updateContent){
+                            res = res.replace(/"webgl-debug.js"/g, '"'+webglDebugURL+'webgl-debug.js"');
+                        }
+                        return res;
+                    };
+                    editor.title = "WebGL debug example";
+                    editor.build();
+                </script>
+                <p>
+                    Another tool is WebGL-Inspector, which allows you to inspect WebGL including viewing textures,
+                    models and shaders. WebGL-Inspector can be installed as a browser plugin or be used as a JavaScript
+                    library.
+                </p>
+                <p>
+                    Both tools are very useful for debugging, but should be disabled for production code, since they add
+                    a significant performance overhead.
+                </p>
+                <ul>
+                    <li><a href="http://www.khronos.org/webgl/wiki/Debugging">WebGL-Debug (http://www.khronos.org/webgl/wiki/Debugging)</a></li>
+                    <li><a href="http://benvanik.github.io/WebGL-Inspector/">WebGL-Inspector (http://benvanik.github.io/WebGL-Inspector/)</a></li>
+                    <li><a href="http://benvanik.github.io/WebGL-Inspector/samples/lesson05/embedded.html">Example of WebGL-Inspector (http://benvanik.github.io/WebGL-Inspector/samples/lesson05/embedded.html)</a></li>
+                </ul>
+                <script>
+                    insertNavigator();
+                </script>
+            </div>
+        </div>
+    </article>
+</div>
+</body>
+
+</html>

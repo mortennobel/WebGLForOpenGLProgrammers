@@ -1,0 +1,117 @@
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-26354413-1']);
+        _gaq.push(['_setDomainName', 'kickjs.org']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+    </script>
+    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/combo?3.16.0/cssnormalize/cssnormalize-min.css&3.16.0/cssfonts/cssfonts-min.css&3.16.0/cssgrids/cssgrids-min.css&3.16.0/cssbase/cssbase-min.css&3.16.0/cssbutton/cssbutton-min.css">
+    <script src="http://yui.yahooapis.com/3.16.0/build/yui/yui-min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Coustard:400,900' rel='stylesheet' type='text/css'>
+    <link href='style.css' rel='stylesheet' type='text/css'>
+    <title>WebGL for OpenGL Programmers</title>
+</head>
+<body class="yui3-skin-sam">
+<script src="//cdn.jsdelivr.net/ace/1.1.3/min/ace.js" type="text/javascript" charset="utf-8"></script>
+<script src="live_editor.js" type="text/javascript" charset="utf-8"></script>
+<script src="navigator.js" type="text/javascript" charset="utf-8"></script>
+<div id="page">
+    <header>
+    </header>
+    <article class="content">
+        <div id="wrapper" class="clearfix">
+            <div id="singlecol">
+
+                <script>
+                    insertPageTitle();
+                </script>
+                <p>
+                    WebGL is a very low-level API and much more low-level than other APIs in the  web-browser. So when
+                    starting a large project, which includes WebGL an important question is if WebGL has the right
+                    level of abstraction for the project or you instead should use a WebGL framework which has
+                    implemented many of the standard features (model-loading, scene graphics, etc). On the other hand
+                    a framework may have taken some design choices or may have other limitations which conflicts with your needs.
+                </p>
+                <p>
+                    One of the most widely used WebGL frameworks is Three.js, which has a very simple API and is easy to get
+                    started. Eric Haines (one of the authors of Real-Time Rendering) has even created a free Audacity course about Computer Graphics taught in
+                    Three.js in the browser.
+                </p>
+                <p>
+                    There exist a variety of alternative WebGL frameworks each with different strength and weaknesses.
+                </p>
+
+                <script type="html-source/xxx" id="threejs-example">
+<canvas id="n" width="300" height="300"/>
+<scrip_t src="three.min.js"></scrip_t>
+ <scrip_t>
+var scene = new THREE.Scene();
+var camera = new THREE.PerspectiveCamera(75,
+    window.innerWidth/window.innerHeight, 0.1, 1000);
+
+var elem = document.getElementById('n');
+var renderer = new THREE.WebGLRenderer({canvas:elem});
+
+var geometry = new THREE.CubeGeometry(1,1,1);
+var material = new THREE.MeshBasicMaterial(
+    {color: 0x00ff00});
+var cube = new THREE.Mesh(geometry, material);
+scene.add(cube);
+
+camera.position.z = 5;
+
+var render = function () {
+    requestAnimationFrame(render);
+
+    cube.rotation.x += 0.1;
+    cube.rotation.y += 0.1;
+
+    renderer.render(scene, camera);
+};
+
+render();
+</scrip_t>
+</script>
+                <script>
+
+                    var contentElement = document.getElementById('threejs-example');
+                    var editor = new LiveEditor();
+                    editor.data = contentElement.textContent;
+                    editor.mode = "ace/mode/html";
+                    editor.height = "480px";
+                    // cheating to use absolute url to webGlDebug
+                    var webglDebugURL = location.href.substring(0,location.href.lastIndexOf('/')+1);
+                    var oldWrapper = editor.wrapperFunction;
+                    editor.wrapperFunction = function(data, updateContent){
+                        var res = oldWrapper(data);
+                        if (!updateContent){
+                            res = res.replace(/"three.min.js"/g, '"'+webglDebugURL+'three.min.js"');
+                        }
+                        return res;
+                    };
+                    editor.title = "Threejs example";
+                    editor.build();
+                </script>
+                <ul>
+                    <li><a href="http://threejs.org">Three.JS (http://threejs.org)</a></li>
+                    <li><a href="https://www.udacity.com/course/cs291">Coursera: Interactive 3D Graphics (https://www.udacity.com/course/cs291)</a></li>
+                </ul>
+                <script>
+                    insertNavigator();
+                </script>
+            </div>
+        </div>
+    </article>
+</div>
+</body>
+
+</html>
