@@ -69,11 +69,6 @@ function hasWebGLSupport(){
 
 function insertPageTitle(){
     document.write("<h1>WebGL for OpenGL Programmers</h1>");
-    document.write('<h2 style="color:red">- Only for usage on DTU - do not share URL! -</h2>');
-    var userAgent = navigator.userAgent;
-    if (userAgent.indexOf("Chrome") == -1 && userAgent.indexOf("Firefox")==-1  && userAgent.indexOf("Safari")==-1){
-        document.write("<p class='warning'>Please use Google Chrome or Mozilla Firefox as webbrowser. Code examples may not run as intended in your browser.</p>");
-    }
     if (!hasWebGLSupport()) {
         document.write("<p class='warning'>Your browser does not seem to support WebGL. Try upgrading your webbrowser and/or your graphics card driver.</p>");
     }
