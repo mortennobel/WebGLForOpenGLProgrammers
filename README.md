@@ -1,6 +1,14 @@
 WebGL for OpenGL Programmers
 ====================================
 
+This tutorial will give a brief introduction to WebGL programming for OpenGL programmers with C/C++
+experience. The main focus is how to use WebGL including how it is integrated with other browser
+technologies. If you have no prior experience with OpenGL you should use a more in-depth tutorial
+with a focus on how the OpenGL API works such as the
+
+<a href="http://learningwebgl.com/blog/?page_id=1217">www.learningwebgl.com</a>.
+
+
 Interactive introduction to WebGL:
 http://mortennobel.github.io/WebGLForOpenGLProgrammers/
 
